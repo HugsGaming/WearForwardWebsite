@@ -10,9 +10,12 @@ const port = process.env.PORT || 8000;
 mongoClient.connect(
     process.env.RESTREVIEWS_DB_URI,
     {
+        useUnifiedTopology: true,
         poolSize: 50,
-        wtimeout: 2500,
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        writeConcern: {
+            wtimeout: 2500,
+        }
     }
 ).catch(err => {
     console.error(err);
